@@ -1,15 +1,7 @@
 require "QiwiApi/version"
-require "httparty"
+require "QiwiApi/payments"
 
-	class Client
-
-		def initialize(access_token=nil)
-			@access_token = access_token
-		end
-
-		def payments(qty, number, operation)
-			url = "https://edge.qiwi.com/payment-history/v2/persons/#{number}/payments?rows=#{qty}&operation=#{operation}"
-			response = HTTParty.get(url, headers: { 'Authorization' => "Bearer #{@access_token}" , 'Accept' => " application/json", 'Content-Type' => 'application/json'})
-    end
-	end
-
+module QiwiApi
+  class Error < StandardError; end
+  # Your code goes here...
+end
