@@ -10,6 +10,11 @@ module QiwiApi
 			def payments(qty, number, operation)
 					url = "https://edge.qiwi.com/payment-history/v2/persons/#{number}/payments?rows=#{qty}&operation=#{operation}"
 					response = HTTParty.get(url, headers: { 'Authorization' => "Bearer #{@access_token}" , 'Accept' => " application/json", 'Content-Type' => 'application/json'})
-			end
+					sum = response.to_a
+					amount = sum[0][1][0]["total"]["amount"]
+					date = sum[0][1][0]["date"]
+					comment = sum[0][1][0]["comment"]
+					p amount, date, comment
+				end
 	end
 end
