@@ -12,6 +12,4 @@ require "httparty"
 			response = HTTParty.get(url, headers: { 'Authorization' => "Bearer #{@access_token}" , 'Accept' => " application/json", 'Content-Type' => 'application/json'})
     end
 	end
-  # client = Client.new("b1af1687972a12f5bd73ff8108fafb82")
-  # payments_history = client.payments(5, 77018986329, "IN")
-  # p payments_history
+
