@@ -2,6 +2,7 @@ require "httparty"
 
 module QiwiApi
 	class Client
+
 		def initialize(access_token)
 			@access_token = access_token
 		end
@@ -20,5 +21,6 @@ module QiwiApi
 			end
 			payments_history
 		end
+		
 	end
 end
