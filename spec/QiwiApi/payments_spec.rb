@@ -32,7 +32,7 @@ RSpec.describe QiwiApi::Client do
     end
 
     context "when access token is not correct" do
-      it "returns with 'Error 401 Unauthorized' message " do
+      it "returns nil" do
         stub_request(:get, "https://edge.qiwi.com/payment-history/v2/persons/77018986329/payments?operation=ALL&rows=1").
         with(
           headers: {
@@ -40,7 +40,7 @@ RSpec.describe QiwiApi::Client do
            'Authorization'=>'Bearer b1af1687972a12f5bd73ff8108fafb99',
            'Content-Type'=>'application/json'
            }).
-        to_return(status: [401, 'Unauthorized'])
+        to_return(status: nil)
         access = QiwiApi::Client.new(
           'b1af1687972a12f5bd73ff8108fafb99'
           ).payments('1', '77018986329','ALL')
@@ -49,7 +49,7 @@ RSpec.describe QiwiApi::Client do
     end
 
     context "when wallet is not correct" do
-      it "returns with 'Error 403 Forbidden' message " do
+      it "returns nil" do
         stub_request(:get, "https://edge.qiwi.com/payment-history/v2/persons/77018986322/payments?operation=ALL&rows=1").
         with(
           headers: {
@@ -57,7 +57,7 @@ RSpec.describe QiwiApi::Client do
            'Authorization'=>'Bearer b1af1687972a12f5bd73ff8108fafb82',
            'Content-Type'=>'application/json'
            }).
-        to_return(status: [403, 'Forbidden'])
+        to_return(status: nil)
         access = QiwiApi::Client.new(
           'b1af1687972a12f5bd73ff8108fafb82'
           ).payments('1','77018986322','ALL')

@@ -1,16 +1,17 @@
 module QiwiApi
+  
   class Webhook
     def initialize(key)
       @key = key
     end
 
-    def call(params)
-      return WebhookResponse.new(success: true, body: params) if params.dig(:test) == true
+    def payments(params)
+      return Webhook.new(body: params) if params.dig(:test) == true
 
       if sign_correct?(params)
-        return WebhookResponse.new(success: true, body: params)
+        return Webhook.new(body: params)
       else
-        return WebhookResponse.new(success: false, body: params.dig(:payment, :txnId))
+        return Webhook.new(body: params.dig(:payment, :txnId))
       end
     end
 
