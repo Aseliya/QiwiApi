@@ -4,6 +4,8 @@ require 'openssl'
 require "QiwiApi/version"
 require "QiwiApi/payments"
 require "QiwiApi/webhook/webhook"
+require "QiwiApi/webhook/webhook_response"
+
 
 
 module QiwiApi

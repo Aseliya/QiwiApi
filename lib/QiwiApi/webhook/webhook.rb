@@ -1,17 +1,17 @@
 module QiwiApi
-  
+
   class Webhook
     def initialize(key)
-      @key = key
+      @key = key #получение ключа "key":"zpgzvWqhRJ+px4l7BTXqgk09Y486CjkPP8ZRK1zTbtM=" (каждый вебхук содержит цифровую подпись сообщения, зашифрованную ключом)
     end
 
     def payments(params)
-      return Webhook.new(body: params) if params.dig(:test) == true
+      return WebhookResponse.new(body: params) if params.dig(:test) == true
 
       if sign_correct?(params)
-        return Webhook.new(body: params)
+        return WebhookResponse.new(body: params)
       else
-        return Webhook.new(body: params.dig(:payment, :txnId))
+        return WebhookResponse.new(body: params.dig(:payment, :txnId))
       end
     end
 
