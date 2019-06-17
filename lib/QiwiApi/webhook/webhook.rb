@@ -6,7 +6,7 @@ module QiwiApi
     end
 
     def payments(params)
-      return WebhookResponse.new(body: params) if params.dig(:test) == true
+      # return WebhookResponse.new(body: params) if params.dig(:test) == true
 
       if sign_correct?(params)
         return WebhookResponse.new(body: params)
